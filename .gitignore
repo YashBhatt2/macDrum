@@ -1,0 +1,22 @@
+# --- Python Virtual Environment ---
+venv/
+env/
+.env
+
+# --- Python Compiled Files ---
+__pycache__/
+*.py[cod]
+*$py.class
+
+# --- Machine Learning Artifacts ---
+# You generally don't want to commit these unless you are deploying
+*.pkl
+drum_data.csv
+
+# --- macOS Metadata ---
+.DS_Store
+
+# --- IDE / Editor Settings ---
+.vscode/
+.idea/
+*.sublime-workspace
