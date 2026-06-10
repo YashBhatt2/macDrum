@@ -24,8 +24,8 @@ SOUNDS = {
 def play_sound(label):
     sound_file = SOUNDS.get(label)
     if sound_file:
-        # We use macOS's native 'afplay' via subprocess instead of playsound.
-        # This plays the sound in the background instantly without freezing the script!
+
+
         subprocess.Popen(["afplay", sound_file])
 
 def main():
@@ -43,7 +43,7 @@ def main():
                 jump = abs(s.z - prev_z)
                 
                 if jump > DELTA_THRESHOLD:
-                    # 1. Capture the 40 samples
+
                     capture = [[s.x, s.y, s.z]]
                     
                     while len(capture) < SAMPLES_TO_COLLECT:
@@ -54,10 +54,10 @@ def main():
                             else:
                                 break
                     
-                    # 2. Flatten the data exactly like we did for training
+
                     flat_data = [val for sublist in capture for val in sublist]
                     
-                    # 3. Predict! (scikit-learn expects a 2D array, so wrap it in brackets)
+                    # 3. Predict (scikit-learn expects a 2D array, so wrap it in brackets)
                     prediction = clf.predict([flat_data])[0]
                     
                     print(f"{prediction.upper()}")
@@ -75,6 +75,6 @@ if __name__ == "__main__":
     try:
         main()
     except KeyboardInterrupt:
-        print("\n\n✅ Drum kit powered down.")
+        print("\n\n Drum kit powered down.")
     except Exception as e:
-        print(f"\n\n❌ Error: {e}")
+        print(f"\n\n Error: {e}")

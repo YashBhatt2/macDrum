@@ -22,18 +22,16 @@ A single slap yields a 2D matrix of shape `(40, 3)`—representing 40 sequential
 
 $$[X_1, Y_1, Z_1, X_2, Y_2, Z_2, \dots, X_{40}, Y_{40}, Z_{40}]$$
 
-### 4. Machine Learning Inference (The Brain)
-The core classification is handled by a **Supervised Random Forest Classifier** (`scikit-learn`). 
-* Rather than relying on rigid mathematical formulas, the model uses an ensemble of **100 independent Decision Trees**. 
-* During training, trees evaluate splits using **Gini Impurity** to discover exactly how a shockwave dissipates through the chassis.
-* When you hit a zone, the 100 trees run parallel evaluations and hold a **majority vote** to instantly classify the vibration signature into one of five categories: `top_left`, `top_right`, `bottom_left`, `bottom_right`, or `none`.
+### 4. Machine Learning Inference (The Brain).  
+The core classification is handled by a **Supervised Random Forest Classifier** (`scikit-learn`).    
+* Rather than relying on rigid mathematical formulas, the model uses an ensemble of **100 independent Decision Trees**.    
+* During training, trees evaluate splits using **Gini Impurity** to discover exactly how a shockwave dissipates through the chassis.     
+* When you hit a zone, the 100 trees run parallel evaluations and hold a **majority vote** to instantly classify the vibration signature into one of five categories: `top_left`, `top_right`, `bottom_left`, `bottom_right`, or `none`.     
 
-### 5. Asynchronous, Non-Blocking Audio Execution
-Using typical python audio players freezes the execution thread during playback, causing massive input lag. `macDrum` achieves near **zero-latency audio rendering** by utilizing an asynchronous runtime pattern. It spins up concurrent child processes via macOS’s native `afplay` binary engine (`subprocess.Popen`), allowing rapid overlapping hits (like a real drum roll) without blocking the primary telemetry thread.
 ---
 ## Repo Blueprint
 
-* **`collect_data.py`**: The data acquisition script. It prompts you for a label, registers your slaps, flattens the vectors, and appends them to your training set.
+* **`collect_data.py`**: The data acquisition script. It prompts you for a label, registers the slaps, flattens the vectors, and appends them to the training set.
 * **`train_model.py`**: The training engine. It ingests your raw data, splits it into an 80/20 train/test distribution, prints an evaluation report, and serializes the model.
 * **`play_drums.py`**: The real-time live engine. It loads the compiled brain, continuously polls the IMU, runs real-time inference, and triggers local audio files.
 * **`drum_data.csv`**: The local dataset containing your raw, flattened 120-feature vibration fingerprints.

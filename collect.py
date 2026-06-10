@@ -9,8 +9,8 @@ COOLDOWN = 0.5
 FILENAME = "data2.csv"
 
 
-label = input("Enter label for this session (e.g., left, right, trackpad): ").strip()
-print(f"\n🎧 Starting collection for '{label}'.")
+label = input("Enter label for this session (e.g.bottom_left, top_right): ").strip()
+print(f"\n Starting collection for '{label}'.")
 print(f"Waiting for a sudden Z-axis shift of {DELTA_THRESHOLD}g... SLAP when ready!\n")
 
 
@@ -26,7 +26,7 @@ def main():
                 jump = abs(s.z - prev_z)
                 
                 if jump > DELTA_THRESHOLD:
-                    print(f"💥 SLAP DETECTED! (Jump of {jump:.3f}g) Recording...")
+                    print(f"SLAP DETECTED! (Jump of {jump:.3f}g) Recording...")
                     # playsound("Overworld.mp3")
 
                     capture = [[s.x,s.y,s.z]]
@@ -62,6 +62,6 @@ if __name__ == "__main__":
     try:
         main()
     except KeyboardInterrupt:
-        print("\n\n✅ Session ended. Data saved. IMU connection closed.")
+        print("\n\n Session ended. Data saved. IMU connection closed.")
     except Exception as e:
-        print(f"\n\n❌ An unexpected error occurred: {e}")
+        print(f"\n\n An unexpected error occurred: {e}")

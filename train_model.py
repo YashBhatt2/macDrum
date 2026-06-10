@@ -23,4 +23,4 @@ predictions = clf.predict(X_test)
 print(classification_report(y_test, predictions))
 
 joblib.dump(clf, 'drum_model.pkl')
-print("\n✅ Model saved as 'drum_model.pkl'. You are ready to play!")
+print("\n Model saved as 'drum_model.pkl'. You are ready to play!")

@@ -1,7 +1,7 @@
 from macimu import IMU
 import time
 
-# Note: This script must be executed with 'sudo'
+#execute everything involving macimu from sudo
 with IMU() as imu:
     print("Streaming accelerometer data... Press Ctrl+C to stop.")
     while True:
